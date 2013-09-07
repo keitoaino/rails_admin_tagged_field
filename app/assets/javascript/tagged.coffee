@@ -2,16 +2,16 @@ console.log '123123133'
 
 tags = document.getElementById 'tags'
 
-if is_ckeditor
-  tagged.setAttribute 'data-options', "{\"jspath\":\"/assets/ckeditor/ckeditor.js\",\"base_location\":\"/assets/ckeditor/\",\"options\":{\"customConfig\":\"/assets/ckeditor/config.js\"}}"
-  tagged.setAttribute 'data-richtext', 'ckeditor'
+# if is_ckeditor
+tagged.setAttribute 'data-options', "{\"jspath\":\"/assets/ckeditor/ckeditor.js\",\"base_location\":\"/assets/ckeditor/\",\"options\":{\"customConfig\":\"/assets/ckeditor/config.js\"}}"
+tagged.setAttribute 'data-richtext', 'ckeditor'
 
-  setCKEditor = ->
-    try
-      eval 'editor = CKEDITOR.instances.' + window.tagged
-    catch
-      setTimeout setCKEditor, 300
-  setCKEditor()
+setCKEditor = ->
+  try
+    eval 'editor = CKEDITOR.instances.' + window.tagged
+  catch
+    setTimeout setCKEditor, 300
+setCKEditor()
 
 for i in [1..50]
   tag = document.createElement 'div'
