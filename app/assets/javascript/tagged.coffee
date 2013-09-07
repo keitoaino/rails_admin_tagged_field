@@ -1,19 +1,32 @@
 tagged = document.getElementById window.tagged
 tags = document.getElementById 'tags'
 
-for i in [1..50]
-  tag = document.createElement 'div'
-  tag.setAttribute 'class', 'tag'
-  tag.innerHTML = 'test' + i
+tagged.setAttribute 'data-options', "{\"jspath\":\"/assets/ckeditor/ckeditor.js\",\"base_location\":\"/assets/ckeditor/\",\"options\":{\"customConfig\":\"/assets/ckeditor/config.js\"}}"
+tagged.setAttribute 'data-richtext', "ckeditor"
 
-  tags.appendChild tag
+displayTags = ->
+  try
+    eval 'editor = CKEDITOR.instances.' + window.tagged
 
-  tag.addEventListener 'click', ->
-    cur = tagged.selectionStart
+    for i in [1..50]
+      tag = document.createElement 'div'
+      tag.setAttribute 'class', 'tag'
+      tag.innerHTML = 'test' + i
 
-    val = tagged.value
-    val = val.slice(0, cur) + '[[' + this.innerHTML + ']]' + val.slice(cur, val.length)
-    tagged.value = val
-    tagged.focus()
+      tags.appendChild tag
 
-    tagged.selectionStart = tagged.selectionEnd = cur + this.innerHTML.length + 4
+      tag.addEventListener 'click', ->
+        cur = tagged.selectionStart
+
+        val = tagged.value
+        val = val.slice(0, cur) + '[[' + this.innerHTML + ']]' + val.slice(cur, val.length)
+        tagged.value = val
+        tagged.focus()
+
+        tagged.selectionStart = tagged.selectionEnd = cur + this.innerHTML.length + 4
+
+        editor.insertText '[[' + this.innerHTML + ']]'
+  catch
+    setTimeout displayTags, 300
+
+displayTags()
