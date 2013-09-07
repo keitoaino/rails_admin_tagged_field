@@ -1,0 +1,8 @@
+javascript:
+  window.tagged = "#{field.dom_name}";
+
+= form.send :text_field, field.name, id: field.dom_name
+#tags
+
+= javascript_include_tag 'tagged'
+= stylesheet_link_tag 'tagged'
