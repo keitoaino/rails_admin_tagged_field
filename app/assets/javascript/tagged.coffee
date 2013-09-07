@@ -1,8 +1,8 @@
 tagged = document.getElementById window.tagged
 tags = document.getElementById 'tags'
 
-for i in [1..5]
-  tag = document.createElement 'span'
+for i in [1..50]
+  tag = document.createElement 'div'
   tag.setAttribute 'class', 'tag'
   tag.innerHTML = 'test' + i
 

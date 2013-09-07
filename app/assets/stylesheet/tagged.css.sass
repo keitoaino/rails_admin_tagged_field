@@ -1,7 +1,9 @@
 #tags
   margin: 20px 0px 20px 0px
 
-  span.tag
+  .tag
+    display: inline-block
+
     margin: 5px
     padding: 5px
 
@@ -14,12 +16,15 @@
 
     user-select: none
 
-  span.tag:before
+  .tag:before
     color: #2ecc71
 
     content: '[['
 
-  span.tag:after
+  .tag:after
     color: #2ecc71
 
     content: ']]'
+
+  .tag:hover
+    background-color: darken(#ecf0f1, 10%)
