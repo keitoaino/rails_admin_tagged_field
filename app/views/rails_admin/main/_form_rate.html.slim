@@ -1,0 +1,10 @@
+javascript:
+  window.rate = "#{field.dom_name}";
+
+= form.send :hidden_field, field.name, id: field.dom_name
+#rate-preview
+
+#rate
+
+= javascript_include_tag 'rate'
+= stylesheet_link_tag 'rate'
