@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["keitoaino@gmail.com"]
   spec.description   = "Adds a tagged field to rails_admin"
   spec.summary       = "Field with ability to add tags (special words will be parsed) to input"
-  spec.homepage      = "erverer"
+  spec.homepage      = "http://github.com/keitoaino/rails_admin_tagged_field"
   spec.license       = "GPL"
 
   spec.files         = `git ls-files`.split($/)
