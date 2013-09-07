@@ -6,9 +6,9 @@ module RailsAdmin::Config::Fields::Types
       [@tags, ckeditor]
     end
 
-    # register_instance_option :ckeditor do
-    #   false
-    # end
+    register_instance_option :ckeditor do
+      false
+    end
 
     def dom_name
       @dom_name ||= "#{bindings[:form].object_name}_#{@name}"
