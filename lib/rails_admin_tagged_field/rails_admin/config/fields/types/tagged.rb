@@ -1,13 +1,17 @@
 module RailsAdmin::Config::Fields::Types
   class Tagged < RailsAdmin::Config::Fields::Base
-    RailsAdmin::Config::Fields::Types::register(:tagged, self)
+    RailsAdmin::Config::Fields::Types::register :tagged, self
 
     def allowed_methods
-      [@tags]
+      [is_ckeditor]
     end
 
     register_instance_option :partial do
       :form_tagged
+    end
+
+    register_instance_option :is_ckeditor do
+      false
     end
 
     def dom_name
