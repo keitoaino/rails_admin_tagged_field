@@ -16,7 +16,8 @@ if is_ckeditor == 'true'
 for i in [0...params_parsed.length]
   tag = document.createElement 'div'
   tag.setAttribute 'class', 'tag'
-  tag.innerHTML = params_parsed[i]
+  tag.setAttribute 'title', params_parsed[i][1]
+  tag.innerHTML = params_parsed[i][0]
 
   tags.appendChild tag
 
