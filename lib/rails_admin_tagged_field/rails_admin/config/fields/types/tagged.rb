@@ -11,7 +11,7 @@ module RailsAdmin::Config::Fields::Types
     end
 
     register_instance_option :is_ckeditor do
-      0
+      false
     end
 
     register_instance_option :params do

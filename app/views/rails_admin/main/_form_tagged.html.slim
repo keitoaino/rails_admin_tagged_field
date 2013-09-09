@@ -1,10 +1,49 @@
-javascript:
-  window.tagged = "#{field.dom_name}";
-  window.is_ckeditor = "#{field.is_ckeditor}";
-  window.params = "#{field.params}";
-
 = form.send :text_field, field.name, id: field.dom_name
-#tags
+.tags id="tags-#{field.dom_name}"
 
-= javascript_include_tag 'tagged'
+javascript:
+  tagged_input = document.getElementById("#{field.dom_name}");
+  tags = document.getElementById('tags-' + "#{field.dom_name}");
+  params_parsed = JSON.parse("#{field.params}".split("&quot;").join('"'));
+
+  if ("#{field.is_ckeditor}" == "true"){
+    tagged_input.setAttribute('data-options', "{\"jspath\":\"/assets/ckeditor/ckeditor.js\",\"base_location\":\"/assets/ckeditor/\",\"options\":{\"customConfig\":\"/assets/ckeditor/config.js\"}}");
+    tagged_input.setAttribute('data-richtext', 'ckeditor');
+
+    setCKEditor = function(){
+      try{eval("editor = CKEDITOR.instances.#{field.dom_name}");}
+      catch(e){setTimeout(setCKEditor, 300);}
+    }
+    setCKEditor();
+  }
+
+  for(i = 0; i < params_parsed.length; i++) {
+    var tag = document.createElement('div');
+    tag.setAttribute('class', 'tag');
+    tag.setAttribute('title', params_parsed[i][1]);
+    tag.setAttribute('data-id', "#{field.dom_name}");
+    tag.innerHTML = params_parsed[i][0];
+
+    tags.appendChild(tag);
+
+    if ("#{field.is_ckeditor}" == "true")
+      tag.addEventListener('click', function(){
+        eval("editor = CKEDITOR.instances." + this.getAttribute('data-id'));
+        editor.insertText('[[' + this.innerHTML + ']]');
+      });
+    else
+      tag.addEventListener('click', function(){
+        var tagged_input = document.getElementById(this.getAttribute('data-id'));
+
+        var cur = tagged_input.selectionStart;
+
+        var val = tagged_input.value;
+        var val = val.slice(0, cur) + '[[' + this.innerHTML + ']]' + val.slice(cur, val.length);
+        tagged_input.value = val;
+        tagged_input.focus();
+
+        tagged_input.selectionStart = tagged_input.selectionEnd = cur + this.innerHTML.length + 4;
+      })
+  }
+
 = stylesheet_link_tag 'tagged'
