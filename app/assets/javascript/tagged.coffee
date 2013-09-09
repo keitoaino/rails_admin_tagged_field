@@ -1,5 +1,6 @@
 tagged = document.getElementById window.tagged
 tags = document.getElementById 'tags'
+params_parsed = JSON.parse params.split("&quot;").join('"')
 
 if is_ckeditor == 'true'
   tagged.setAttribute 'data-options', "{\"jspath\":\"/assets/ckeditor/ckeditor.js\",\"base_location\":\"/assets/ckeditor/\",\"options\":{\"customConfig\":\"/assets/ckeditor/config.js\"}}"
@@ -12,15 +13,15 @@ if is_ckeditor == 'true'
       setTimeout setCKEditor, 300
   setCKEditor()
 
-for i in [1..50]
+for i in [0...params_parsed.length]
   tag = document.createElement 'div'
   tag.setAttribute 'class', 'tag'
-  tag.innerHTML = 'test' + i
+  tag.innerHTML = params_parsed[i]
 
   tags.appendChild tag
 
   tag.addEventListener 'click', ->
-    if is_ckeditor
+    if is_ckeditor == 'true'
       editor.insertText '[[' + this.innerHTML + ']]'
     else
       cur = tagged.selectionStart
