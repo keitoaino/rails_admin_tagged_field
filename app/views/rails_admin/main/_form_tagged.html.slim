@@ -1,4 +1,7 @@
-= form.send :text_field, field.name, id: field.dom_name, maxlength: 255, size: 50
+- if field.is_ckeditor
+  = form.send :text_area, field.name, id: field.dom_name, maxlength: 255, size: 50
+- else
+  = form.send :text_field, field.name, id: field.dom_name, maxlength: 255, size: 50
 .tags id="tags-#{field.dom_name}"
 
 javascript:

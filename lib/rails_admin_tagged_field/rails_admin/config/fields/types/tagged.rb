@@ -6,8 +6,8 @@ module RailsAdmin::Config::Fields::Types
       [@name]
     end
 
-    register_instance_option :ckeditor do
-      false
+    register_instance_option :partial do
+      :form_tagged
     end
 
     register_instance_option :is_ckeditor do
@@ -20,10 +20,6 @@ module RailsAdmin::Config::Fields::Types
 
     def dom_name
       @dom_name ||= "#{bindings[:form].object_name}_#{@name}"
-    end
-
-    def is_ckeditor
-      ckeditor
     end
   end
 end
