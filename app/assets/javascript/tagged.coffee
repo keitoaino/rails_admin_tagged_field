@@ -1,7 +1,7 @@
 tagged = document.getElementById window.tagged
 tags = document.getElementById 'tags'
 
-if is_ckeditor
+if is_ckeditor == 'true'
   tagged.setAttribute 'data-options', "{\"jspath\":\"/assets/ckeditor/ckeditor.js\",\"base_location\":\"/assets/ckeditor/\",\"options\":{\"customConfig\":\"/assets/ckeditor/config.js\"}}"
   tagged.setAttribute 'data-richtext', 'ckeditor'
 

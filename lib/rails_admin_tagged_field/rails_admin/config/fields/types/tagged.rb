@@ -11,7 +11,7 @@ module RailsAdmin::Config::Fields::Types
     end
 
     register_instance_option :is_ckeditor do
-      false
+      0
     end
 
     def dom_name
