@@ -3,7 +3,7 @@ module RailsAdmin::Config::Fields::Types
     RailsAdmin::Config::Fields::Types::register :tagged, self
 
     def allowed_methods
-      [is_ckeditor, params]
+      [@name]
     end
 
     register_instance_option :partial do
